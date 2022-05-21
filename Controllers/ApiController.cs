@@ -17,14 +17,14 @@ namespace wowAPI.Controllers
         {
             _db =  db;
         }
-
+        // Gets all character in database
         [HttpGet("/api/character")]
         public async Task<string> GetCharacters()
         {
             var characterData = _db.MajorCharacters.ToList();
             return JsonConvert.SerializeObject(characterData);
         }
-
+        // Gets character by id in database
         [HttpGet("/api/character/{characterId}")]
         public async Task<string> GetCharacterById(int characterId)
         {
@@ -36,6 +36,7 @@ namespace wowAPI.Controllers
             return JsonConvert.SerializeObject(character);
         }
 
+        // Updates character by id in database
         [HttpPost("/api/character/{characterId}")]
         public async Task<string> UpdateCharacterById(int characterId, [FromBody] MajorCharacter newModel)
         {
@@ -43,7 +44,7 @@ namespace wowAPI.Controllers
             await _db.SaveChangesAsync();
             return "true";
         }
-        
+        // Adds new expansion to database
         [HttpPut("/api/expansion")]
         public async Task<string> AddExpansion(int expansionId, [FromBody] Expansion newModel)
         {
@@ -51,7 +52,7 @@ namespace wowAPI.Controllers
             await _db.SaveChangesAsync();
             return "true";
         }
-
+        // Delete character by id in database
         [HttpDelete("/api/character/{characterId}")]
         public async Task<string> DeleteCharacterById(int characterId)
         {
