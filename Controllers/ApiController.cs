@@ -3,6 +3,7 @@ using wowAPI.Data;
 using wowAPI.Entities;
 using Newtonsoft.Json;
 
+
 namespace wowAPI.Controllers
 {
     [ApiController]
@@ -43,7 +44,7 @@ namespace wowAPI.Controllers
             return "true";
         }
         
-        [HttpPost("/api/expansion")]
+        [HttpPut("/api/expansion")]
         public async Task<string> AddExpansion(int expansionId, [FromBody] Expansion newModel)
         {
             _db.Expansions.Add(newModel);
